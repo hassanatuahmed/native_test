@@ -20,7 +20,7 @@ class GreatPlaces with ChangeNotifier {
       id: DateTime.now().toString(),
       image: pickedImage,
       title: pickedTitle,
-      location: null,
+      //location: null,
     );
     _items.add(newPlace);
     notifyListeners();
@@ -39,7 +39,7 @@ class GreatPlaces with ChangeNotifier {
                 id: item['id'],
                 title: item['title'],
                 image: File(item['image']),
-                location: null,
+                //location: null,
               ),
         )
         .toList();

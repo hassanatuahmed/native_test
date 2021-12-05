@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
@@ -15,7 +16,7 @@ class AddPlaceScreen extends StatefulWidget {
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titleController = TextEditingController();
-  File _pickedImage;
+  var  _pickedImage;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
