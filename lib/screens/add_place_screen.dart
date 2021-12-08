@@ -19,6 +19,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   var  _pickedImage;
 
   void _selectImage(File pickedImage) {
+    //File file = File( _imageFile.path );
     _pickedImage = pickedImage;
   }
 

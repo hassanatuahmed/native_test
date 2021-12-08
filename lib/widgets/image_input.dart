@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart' as syspaths;
 
 class ImageInput extends StatefulWidget {
@@ -16,31 +16,32 @@ class ImageInput extends StatefulWidget {
 
 class _ImageInputState extends State<ImageInput> {
   var _storedImage;
+    final ImagePicker _picker = ImagePicker();
+
 
   Future<void> _takePicture() async {
-    final imageFile = await ImagePicker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 600,
-    );
+
+     final XFile? imageFile = await _picker.pickImage(source: ImageSource.camera);
+    //  var imageFile = await ImagePicker.pickImage(
+    //   source: ImageSource.camera,
+    //   maxWidth: 600,
+    // );
     if (imageFile == null) {
       return;
     }
     setState(() {
-      _storedImage = imageFile;
+      _storedImage = File(imageFile.path);
     });
 
-    // Directory appDirectory = await syspaths.getApplicationDocumentsDirectory();
-    // File fileName = File(appDirectory.path + 'fileName');
-    // fileName.writeAsBytes(File(imageFile.path).readAsBytesSync());
+  
 
     final appDir = await syspaths.getApplicationDocumentsDirectory();
     print("hello");
     print(appDir);
-    //File fileName = path.basename(imageFile.path);
-    File fileName = File(appDir.path + 'fileName');
-    //final savedImage = await File(imageFile.path).copy('${appDir.path}/$fileName');
-    final savedImage=fileName.writeAsBytes(File(imageFile.path).readAsBytesSync());
-
+    final fileName = path.basename(imageFile.path);
+    //File fileName = File(appDir.path + 'fileName');
+    final savedImage = await File(imageFile.path).copy('${appDir.path}/$fileName');
+    //File file = File(savedImage.path);
     widget.onSelectImage(savedImage);
   }
 

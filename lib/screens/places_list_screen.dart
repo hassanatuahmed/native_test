@@ -3,8 +3,13 @@ import 'package:provider/provider.dart';
 
 import './add_place_screen.dart';
 import '../providers/great_places.dart';
+class PlacesListScreen  extends StatefulWidget {
 
-class PlacesListScreen extends StatelessWidget {
+  @override
+  _PlacesListScreen  createState() => _PlacesListScreen();
+}
+
+class _PlacesListScreen  extends State<PlacesListScreen > {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +37,7 @@ class PlacesListScreen extends StatelessWidget {
                   child: const Text('Got no places yet, start adding some!'),
                 ),
                 builder: (ctx, greatPlaces, ch) => greatPlaces.items.length <= 0
-                    ? ch
+                    ? ch!
                     : ListView.builder(
                         itemCount: greatPlaces.items.length,
                         itemBuilder: (ctx, i) => ListTile(
